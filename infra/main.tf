@@ -125,6 +125,7 @@ resource "aws_redshift_cluster" "main" {
   master_password    = var.REDSHIFT_PASSWORD
   node_type          = "dc2.large"
   cluster_type       = "single-node"
+  automated_snapshot_retention_period = 0
   cluster_subnet_group_name = aws_redshift_subnet_group.redshift_sgroup.name
   skip_final_snapshot = true
   tags = {
