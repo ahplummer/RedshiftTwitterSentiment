@@ -1,0 +1,22 @@
+FROM apache/airflow
+USER root
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    groff \
+    git \
+    libpq-dev \
+    python-dev \
+    libssl-dev \
+    build-essential \
+    libffi-dev 
+
+RUN pip3 install --upgrade cffi
+RUN pip3 install cryptography
+RUN pip3 install awscli --upgrade
+RUN pip3 install virtualenv
+RUN pip3 install dbt
+RUN pip3 install airflow-code-editor
+RUN pip3 install black
+COPY ./dags/comprehend/requirements.txt /opt/airflow/dags/comprehend/requirements.txt
+RUN pip3 install -r /opt/airflow/dags/comprehend/requirements.txt
+USER airflow

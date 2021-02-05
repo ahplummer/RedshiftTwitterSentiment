@@ -1,0 +1,13 @@
+twitterprofile:
+  outputs:
+      dev:
+        type: redshift
+        threads: 1
+        host: "{{ env_var('DBT_SERVER') }}"
+        port: 5439
+        user: "{{ env_var('DBT_USER') }}"
+        pass: "{{ env_var('DBT_PASSWORD') }}"
+        dbname: twitter
+        schema: public
+
+  target: dev
